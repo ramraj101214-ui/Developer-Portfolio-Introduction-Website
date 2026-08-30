@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deepak | Web Developer & Technology Enthusiast</title>
+  <meta name="description"
+    content="Personal portfolio and introduction website of Deepak, a Web Developer creating clean HTML, CSS, JS, SQL, and AI-driven web experiences." />
+
+  <!-- Google Fonts: Plus Jakarta Sans for Headings & Inter for Body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2306b6d4'/><text x='50' y='65' font-size='60' font-weight='800' fill='%230b0f17' text-anchor='middle' font-family='sans-serif'>D</text></svg>" />
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Background Glowing Orbs -->
+  <div class="bg-glow glow-1" aria-hidden="true"></div>
+  <div class="bg-glow glow-2" aria-hidden="true"></div>
+
+  <!-- Section 1 — Navigation Bar -->
+  <header class="navbar-header" id="navbar">
+    <div class="container nav-container">
+      <!-- Left: Logo Mark + Name -->
+      <a href="#hero" class="nav-logo" aria-label="Deepak Home">
+        <span class="logo-badge">D</span>
+        <span class="logo-name">Dee<span class="text-accent">pak</span></span>
+      </a>
+
+      <!-- Center & Right Nav Links -->
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#hero" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn btn-primary nav-cta">Get in Touch</a>
+      </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false"
+        aria-controls="navMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation Mobile Backdrop Overlay -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+  <main>
+    <!-- Section 2 — Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <!-- Left Column: Content & CTAs -->
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="sparkle-icon">✨</span> Hello, I'm <span class="highlight-text">Deepak</span>
+          </div>
+          <h1 class="hero-title">
+            Building Fast, Clean & <span class="gradient-text">Modern Web</span> Solutions.
+          </h1>
+          <p class="hero-description">
+            I'm a web developer skilled in HTML, CSS, JavaScript, SQL, and leveraging AI tools to craft clean,
+            performant applications.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary btn-lg">
+              Say Hello
+              <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="#projects" class="btn btn-outline btn-lg">
+              View Work
+              <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Avatar Photo & Visual Float Cards -->
+        <div class="hero-visual">
+          <div class="avatar-frame">
+            <img src="assets/hero-avatar.png" alt="Deepak Avatar" class="avatar-img" />
+            <div class="avatar-glow"></div>
+
+            <!-- Floating Tech Badges -->
+            <div class="float-badge badge-js">
+              <span class="badge-icon">⚡</span>
+              <span>HTML, CSS & JS</span>
+            </div>
+            <div class="float-badge badge-css">
+              <span class="badge-icon">🗄️</span>
+              <span>SQL Database</span>
+            </div>
+            <div class="float-badge badge-bca">
+              <span class="badge-icon">🤖</span>
+              <span>Working with AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Stats Row (Below Both Columns) -->
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" data-target="5" data-suffix="">0</div>
+            <div class="stat-label">Core Skills</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="10" data-suffix="+">0</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="100" data-suffix="%">0</div>
+            <div class="stat-label">Clean & Modern Code</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 — About Section -->
+    <section class="about-section section-padding" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Get to Know Me</span>
+          <h2 class="section-title">About <span class="gradient-text">Myself</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Left: Main Bio Card -->
+          <div class="about-bio-card glass-card">
+            <h3 class="about-heading">Passionate Web Developer & AI Tech Enthusiast</h3>
+            <p class="about-text">
+              Hello! I am <strong>Deepak</strong>, a dedicated web developer focused on mastering foundational
+              technologies like <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong>, building
+              structured database solutions with <strong>SQL</strong>, and enhancing productivity by <strong>working
+                with AI</strong>.
+            </p>
+            <p class="about-text">
+              My goal is to transform ideas into clean, user-friendly, and responsive web applications. I enjoy solving
+              problems, writing maintainable code, and adopting modern AI tools to innovate faster.
+            </p>
+
+            <div class="about-meta">
+              <div class="meta-item">
+                <span class="meta-icon">📍</span>
+                <span>Based in India • Open to Web & AI Projects</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-icon">💻</span>
+                <span>Web Developer (HTML, CSS, JS, SQL, Working with AI)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Personality & Fun Facts Grid -->
+          <div class="about-facts-container">
+            <h3 class="subheading">Interests & Fun Facts</h3>
+            <div class="facts-grid">
+              <div class="fact-card">
+                <div class="fact-icon">🎨</div>
+                <div class="fact-title">UI/UX Enthusiast</div>
+                <div class="fact-desc">Love experimenting with glassmorphism, micro-animations, and clean dark modes.
+                </div>
+              </div>
+              <div class="fact-card">
+                <div class="fact-icon">⚡</div>
+                <div class="fact-title">Problem Solver</div>
+                <div class="fact-desc">Enjoy practicing Data Structures & Algorithms logic to build cleaner code.</div>
+              </div>
+              <div class="fact-card">
+                <div class="fact-icon">🚀</div>
+                <div class="fact-title">Open Source Enthusiast</div>
+                <div class="fact-desc">Actively exploring GitHub repos and building side projects for learning.</div>
+              </div>
+              <div class="fact-card">
+                <div class="fact-icon">☕</div>
+                <div class="fact-title">Tech Podcasts & Coffee</div>
+                <div class="fact-desc">Fueled by morning coffee while listening to web dev podcasts and tech updates.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 — Skills Section -->
+    <section class="skills-section section-padding" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Technical Toolkit</span>
+          <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Skill Card 1: HTML -->
+          <div class="skill-card glass-card">
+            <div class="skill-head">
+              <div class="skill-icon-wrapper html-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2L2 5l1.5 14L12 22l8.5-3L22 5L12 2zm6.7 5l-.3 3.5H9.2l.2 2H18l-.7 7.5L12 21.2l-5.3-1.2-.4-4H9l.2 2 2.8.6 2.8-.6.3-3.3H6.2L5.4 7h13.3z" />
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h3 class="skill-name">HTML</h3>
+                <span class="skill-level">Semantic & Clean Structure</span>
+              </div>
+            </div>
+            <p class="skill-desc">Writing well-structured, semantic, and accessible markup for modern web layouts.</p>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" data-progress="95%" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill Card 2: CSS -->
+          <div class="skill-card glass-card">
+            <div class="skill-head">
+              <div class="skill-icon-wrapper css-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2L2 5l1.5 14L12 22l8.5-3L22 5L12 2zm6.7 5l-.3 3.5H9.2l.2 2H18l-.7 7.5L12 21.2l-5.3-1.2-.4-4H9l.2 2 2.8.6 2.8-.6.3-3.3H6.2L5.4 7h13.3z" />
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h3 class="skill-name">CSS</h3>
+                <span class="skill-level">Modern & Responsive Layouts</span>
+              </div>
+            </div>
+            <p class="skill-desc">Styling pages with Flexbox, CSS Grid, custom themes, and fluid mobile responsiveness.
+            </p>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" data-progress="90%" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill Card 3: JS -->
+          <div class="skill-card glass-card">
+            <div class="skill-head">
+              <div class="skill-icon-wrapper js-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M3 3h18v18H3V3zm10.5 11.5c0-.8-.5-1.3-1.6-1.7l-.6-.2c-.6-.2-.8-.4-.8-.7 0-.4.3-.6.9-.6.7 0 1.2.3 1.5.8l1.3-.9c-.5-.8-1.4-1.3-2.8-1.3-1.7 0-2.8.9-2.8 2.3 0 1.1.7 1.7 1.8 2.1l.6.2c.7.2.9.5.9.8 0 .5-.5.7-1.1.7-.9 0-1.5-.4-1.9-1.1l-1.3.9c.6 1.1 1.7 1.7 3.2 1.7 1.9 0 3-1 3-2.6zm5 0V9h-1.8v5.6c0 1.4-.7 2-1.9 2-.5 0-1.1-.2-1.4-.5l-.6 1.3c.6.5 1.4.7 2.3.7 2.2 0 3.4-1.1 3.4-3.6z" />
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h3 class="skill-name">JS (JavaScript)</h3>
+                <span class="skill-level">Interactive & Dynamic Logic</span>
+              </div>
+            </div>
+            <p class="skill-desc">Creating interactive features, DOM manipulation, asynchronous calls, and clean ES6+
+              code.</p>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" data-progress="85%" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill Card 4: SQL -->
+          <div class="skill-card glass-card">
+            <div class="skill-head">
+              <div class="skill-icon-wrapper sql-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h3 class="skill-name">SQL</h3>
+                <span class="skill-level">Database & Data Management</span>
+              </div>
+            </div>
+            <p class="skill-desc">Designing database tables, writing queries, joins, and managing structured data
+              efficiently.</p>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" data-progress="80%" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill Card 5: Working with AI -->
+          <div class="skill-card glass-card">
+            <div class="skill-head">
+              <div class="skill-icon-wrapper ai-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
+                  </path>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+              </div>
+              <div class="skill-info">
+                <h3 class="skill-name">Working with AI</h3>
+                <span class="skill-level">AI Tools & Prompt Workflows</span>
+              </div>
+            </div>
+            <p class="skill-desc">Leveraging modern AI tools, smart prompts, and AI developer workflows to build
+              solutions efficiently.</p>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" data-progress="88%" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5 — Projects Section -->
+    <section class="projects-section section-padding" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">My Recent Work</span>
+          <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project Card 1: Personal Portfolio Website -->
+          <article class="project-card glass-card">
+            <div class="project-img-wrapper">
+              <img src="assets/project-portfolio.png" alt="Personal Portfolio Website Screenshot" class="project-img" />
+              <div class="project-overlay">
+                <span class="overlay-tag">Featured Build</span>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Glassmorphism</span>
+              </div>
+              <h3 class="project-title">Personal Developer Portfolio</h3>
+              <p class="project-description">
+                A single-page, fully responsive introduction website featuring dynamic scroll navigation, dark theme
+                glassmorphism, stats grid, and animated skill cards.
+              </p>
+              <div class="project-links">
+                <button type="button" class="project-btn primary-project-btn demo-btn" data-demo="portfolio">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                  </svg>
+                  Live Demo
+                </button>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                  class="project-btn outline-project-btn" aria-label="View Portfolio code on GitHub">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                  View Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 2: Smart Task & SQL Manager -->
+          <article class="project-card glass-card">
+            <div class="project-img-wrapper">
+              <img src="assets/project-todo.png" alt="SQL Task Manager Screenshot" class="project-img" />
+              <div class="project-overlay">
+                <span class="overlay-tag">SQL & Web App</span>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-tags">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">SQL</span>
+              </div>
+              <h3 class="project-title">TaskFlow — SQL Task Management Web App</h3>
+              <p class="project-description">
+                A clean task management web app supporting category filters, priority tags, structured SQL database
+                tracking, and responsive UI controls.
+              </p>
+              <div class="project-links">
+                <button type="button" class="project-btn primary-project-btn demo-btn" data-demo="taskflow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                  </svg>
+                  Live Demo
+                </button>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                  class="project-btn outline-project-btn" aria-label="View TaskFlow code on GitHub">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                  View Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 3: AI-Powered Smart Assistant -->
+          <article class="project-card glass-card">
+            <div class="project-img-wrapper">
+              <img src="assets/project-quiz.png" alt="AI Smart Assistant Screenshot" class="project-img" />
+              <div class="project-overlay">
+                <span class="overlay-tag">AI Integration</span>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-tags">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Working with AI</span>
+              </div>
+              <h3 class="project-title">Smart Assistant — AI Workflow Tool</h3>
+              <p class="project-description">
+                An intuitive AI assistant web interface supporting dynamic prompt generation, interactive response
+                cards, and automated workflow helpers.
+              </p>
+              <div class="project-links">
+                <button type="button" class="project-btn primary-project-btn demo-btn" data-demo="assistant">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                  </svg>
+                  Live Demo
+                </button>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                  class="project-btn outline-project-btn" aria-label="View Smart Assistant code on GitHub">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                  View Code
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6 — Contact Section -->
+    <section class="contact-section section-padding" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Let's Connect</span>
+          <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Contact Details & Social Links -->
+          <div class="contact-info glass-card">
+            <h3 class="contact-heading">Let's build something great together!</h3>
+            <p class="contact-text">
+              Whether you have a question, a project idea, or just want to connect with a fellow developer, feel free to
+              send me a message or reach out via email.
+            </p>
+
+            <div class="contact-methods">
+              <a href="mailto:deepak.dev@example.com" class="contact-method-card">
+                <div class="method-icon">✉️</div>
+                <div class="method-details">
+                  <span class="method-label">Direct Email</span>
+                  <span class="method-value">deepak.dev@example.com</span>
+                </div>
+              </a>
+
+              <div class="contact-method-card">
+                <div class="method-icon">📍</div>
+                <div class="method-details">
+                  <span class="method-label">Location</span>
+                  <span class="method-value">Available Worldwide (Remote / Hybrid)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-block">
+              <h4 class="social-title">Connect on Socials</h4>
+              <div class="social-links">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn"
+                  aria-label="GitHub Profile">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn"
+                  aria-label="LinkedIn Profile">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-btn"
+                  aria-label="Twitter Profile">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.936 9.936 0 0024 4.59z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Validated Contact Form -->
+          <div class="contact-form-container glass-card">
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="e.g. Jane Doe" required
+                  aria-describedby="nameError" aria-invalid="false" />
+                <span class="error-message" id="nameError" role="alert">Please enter your name.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">Your Email Address</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="e.g. jane@example.com"
+                  required aria-describedby="emailError" aria-invalid="false" />
+                <span class="error-message" id="emailError" role="alert">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">Your Message</label>
+                <textarea id="message" name="message" class="form-textarea" rows="5"
+                  placeholder="Hi Deepak, I'd like to talk about..." required aria-describedby="messageError"
+                  aria-invalid="false"></textarea>
+                <span class="error-message" id="messageError" role="alert">Please enter your message (at least 10
+                  characters).</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                <span>Send Message</span>
+                <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                </svg>
+              </button>
+
+              <!-- Dynamic Success Alert Toast -->
+              <div id="formSuccessToast" class="form-toast success-toast" hidden role="status">
+                <span class="toast-icon">✅</span>
+                <span>Thank you! Your message has been sent successfully. I'll get back to you soon.</span>
+              </div>
+
+              <!-- General Notice Toast -->
+              <div id="globalToast" class="form-toast notice-toast" hidden role="status">
+                <span class="toast-icon">ℹ️</span>
+                <span id="globalToastMsg">Notice message</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <a href="#hero" class="nav-logo footer-logo">
+          <span class="logo-badge">D</span>
+          <span class="logo-name">Dee<span class="text-accent">pak</span></span>
+        </a>
+        <p class="footer-tagline">Crafting clean web interfaces & responsive digital experiences.</p>
+      </div>
+
+      <div class="footer-right">
+        <p class="copyright">&copy; 2026 Deepak. All rights reserved.</p>
+        <a href="#hero" class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6" />
+          </svg>
+          Top
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Project Demo Modal -->
+  <dialog id="projectDemoModal" class="demo-modal">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-badge" id="modalBadge">Interactive Preview</span>
+          <h3 class="modal-title" id="modalTitle">Project Demo</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close demo modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Dynamic interactive content rendered by script.js -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+
+</html>
