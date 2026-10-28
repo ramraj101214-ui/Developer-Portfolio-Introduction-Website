@@ -10,6 +10,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Elements Selection
+  const html = document.documentElement;
   const navbar = document.getElementById('navbar');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const navMenu = document.getElementById('navMenu');
@@ -21,12 +22,64 @@ document.addEventListener('DOMContentLoaded', () => {
   const globalToast = document.getElementById('globalToast');
   const globalToastMsg = document.getElementById('globalToastMsg');
 
+  // Set current year in footer
+  const currentYearEl = document.getElementById('currentYear');
+  if (currentYearEl) {
+    currentYearEl.textContent = new Date().getFullYear();
+  }
+
+  /* ==========================================================================
+     Theme Management: Auto-detect system preference (prefers-color-scheme)
+     ========================================================================== */
+  const initTheme = () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      html.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      html.setAttribute('data-theme', 'light');
+    }
+    // Otherwise dark mode is default (already set in HTML)
+  };
+
+  // Listen for system theme changes
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+      if (!localStorage.getItem('theme')) {
+        html.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+      }
+    });
+  }
+
+  // Theme toggle function (can be called via script console or future button)
+  window.toggleTheme = () => {
+    const current = html.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  };
+
+  initTheme();
+
   // Modal Elements
   const projectDemoModal = document.getElementById('projectDemoModal');
   const modalBadge = document.getElementById('modalBadge');
   const modalTitle = document.getElementById('modalTitle');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const modalBody = document.getElementById('modalBody');
+
+  // Small helper: escape text before it is ever inserted via innerHTML,
+  // so user-typed content (e.g. the TaskFlow demo's task title) can never
+  // break the markup or run as script.
+  const escapeHtml = (str) => {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  };
+
+  // Small helper: escape single quotes for SQL string literals so user input
+  // in the TaskFlow demo cannot break out of the SQL string (no real DB exists,
+  // but this models correct parameterized-query hygiene).
+  const escapeSql = (str) => str.replace(/'/g, "''");
 
   /* ==========================================================================
      1. Sticky Navbar Header Effect
@@ -90,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   const observerOptions = {
     root: null,
-    rootMargin: '-20% 0px -50% 0px',
+    rootMargin: '-10% 0px -40% 0px',  // Reduced from -20%/-50% for better accuracy
     threshold: 0
   };
 
@@ -98,10 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
-        
+
         // Remove active class from all links
         navLinks.forEach(link => link.classList.remove('active'));
-        
+
         // Add active class to corresponding link
         const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
         if (activeLink) {
@@ -126,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = parseInt(stat.getAttribute('data-target'), 10);
       const suffix = stat.getAttribute('data-suffix') !== null ? stat.getAttribute('data-suffix') : '';
       if (isNaN(target)) return;
-      
+
       let count = 0;
       const duration = 1400; // ms
       const increment = Math.max(1, Math.ceil(target / (duration / 30)));
@@ -205,41 +258,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Close Modal Handling
   if (projectDemoModal && modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', () => projectDemoModal.close());
+    modalCloseBtn.addEventListener('click', () => closeDemoModal());
     projectDemoModal.addEventListener('click', (e) => {
-      if (e.target === projectDemoModal) projectDemoModal.close();
+      if (e.target === projectDemoModal) closeDemoModal();
+    });
+    // Close on Escape
+    projectDemoModal.addEventListener('cancel', (e) => {
+      e.preventDefault();
+      closeDemoModal();
     });
   }
 
+  // Focus management for modal accessibility
+  let lastFocusedEl = null;
+
+  const closeDemoModal = () => {
+    if (projectDemoModal) {
+      projectDemoModal.close();
+      // Return focus to the last element that opened the modal
+      if (lastFocusedEl) {
+        lastFocusedEl.focus();
+        lastFocusedEl = null;
+      }
+    }
+  };
+
   // Open Specific Demo Modal
-  const openDemoModal = (type) => {
+  const openDemoModal = (type, triggerBtn) => {
     if (!projectDemoModal || !modalBody) return;
 
+    // Remember the element that opened the modal so focus can return
+    lastFocusedEl = triggerBtn || null;
+
     if (type === 'portfolio') {
-      modalBadge.textContent = 'FEATURING GLASSMORPHISM & ES6+';
-      modalTitle.textContent = 'Personal Developer Portfolio — Live Features Tour';
+      if (modalBadge) modalBadge.textContent = 'FEATURING GLASSMORPHISM & ES6+';
+      if (modalTitle) modalTitle.textContent = 'Personal Developer Portfolio — Live Features Tour';
       renderPortfolioDemoContent();
     } else if (type === 'taskflow') {
-      modalBadge.textContent = 'SQL & TASK MANAGER APP DEMO';
-      modalTitle.textContent = 'TaskFlow — SQL Task Management Web App';
+      if (modalBadge) modalBadge.textContent = 'SQL & TASK MANAGER APP DEMO';
+      if (modalTitle) modalTitle.textContent = 'TaskFlow — SQL Task Management Web App';
       renderTaskFlowDemoContent();
     } else if (type === 'assistant') {
-      modalBadge.textContent = 'AI WORKFLOW & PROMPT GENERATOR DEMO';
-      modalTitle.textContent = 'Smart Assistant — AI Workflow Tool';
+      if (modalBadge) modalBadge.textContent = 'AI WORKFLOW & PROMPT GENERATOR DEMO';
+      if (modalTitle) modalTitle.textContent = 'Smart Assistant — AI Workflow Tool';
       renderAssistantDemoContent();
     }
 
     if (typeof projectDemoModal.showModal === 'function') {
       projectDemoModal.showModal();
+      // Focus the close button for keyboard users (after content is rendered)
+      setTimeout(() => { if (modalCloseBtn) modalCloseBtn.focus(); }, 100);
     } else {
       projectDemoModal.setAttribute('open', 'true');
     }
   };
 
+  // Focus trap: keep Tab navigation within the modal
+  const trapFocus = (e) => {
+    if (!projectDemoModal || !projectDemoModal.open) return;
+    const focusableEls = projectDemoModal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusableEls.length === 0) return;
+    const firstEl = focusableEls[0];
+    const lastEl = focusableEls[focusableEls.length - 1];
+    if (e.key === 'Tab') {
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    }
+  };
+
+  document.addEventListener('keydown', trapFocus);
+
   demoBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const demoType = btn.getAttribute('data-demo');
-      openDemoModal(demoType);
+      openDemoModal(btn.getAttribute('data-demo'), btn);
     });
   });
 
@@ -302,11 +400,11 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="demo-task-item ${t.completed ? 'completed' : ''}">
             <div class="demo-task-left">
               <input type="checkbox" class="demo-checkbox" data-id="${t.id}" ${t.completed ? 'checked' : ''} />
-              <span style="font-size: 0.95rem; font-weight: 500;">${t.title}</span>
+              <span style="font-size: 0.95rem; font-weight: 500;">${escapeHtml(t.title)}</span>
             </div>
             <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span class="demo-tag tag-${t.priority.toLowerCase()}">${t.priority}</span>
-              <span style="font-size: 0.75rem; color: var(--text-muted); background: rgba(11,15,23,0.5); padding: 0.2rem 0.5rem; border-radius: 4px;">${t.category}</span>
+              <span class="demo-tag tag-${t.priority.toLowerCase()}">${escapeHtml(t.priority)}</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted); background: rgba(11,15,23,0.5); padding: 0.2rem 0.5rem; border-radius: 4px;">${escapeHtml(t.category)}</span>
               <button type="button" class="delete-task-btn" data-id="${t.id}" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:1.1rem; padding: 0 0.25rem;">&times;</button>
             </div>
           </div>
@@ -391,7 +489,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       demoTasks.unshift(newTask);
       titleInput.value = '';
-      const sqlInsert = `INSERT INTO tasks (title, category, priority, status) VALUES ('${newTask.title}', '${newTask.category}', '${newTask.priority}', 'pending');`;
+      const safeTitle = escapeSql(newTask.title);
+      const safeCategory = escapeSql(newTask.category);
+      const safePriority = escapeSql(newTask.priority);
+      const sqlInsert = `INSERT INTO tasks (title, category, priority, status) VALUES ('${safeTitle}', '${safeCategory}', '${safePriority}', 'pending');`;
       updateTaskFlowUI(sqlInsert);
     });
   };

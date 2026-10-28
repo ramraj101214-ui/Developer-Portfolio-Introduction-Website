@@ -27,7 +27,42 @@ introduction-website/
 
 ---
 
-## 🚀 How to Run
+## 🚀 How to Run Locally
 
 1. Clone or download this repository.
 2. Open `index.html` directly in any web browser (or use a local server like VS Code *Live Server*).
+
+---
+
+## 🌐 How to Publish Live on GitHub Pages
+
+Follow these steps to deploy this site live on GitHub:
+
+1. **Create a GitHub Repository:**
+   - Go to [GitHub New Repository](https://github.com/new).
+   - Name your repository (e.g., `introduction-website`).
+   - Set visibility to **Public**.
+   - Do **NOT** initialize with a README if you already have local files. Click **Create repository**.
+
+2. **Upload / Push Your Files:**
+   - **Using Git CLI:**
+     ```bash
+     git init
+     git add .
+     git commit -m "Initial commit - Developer Portfolio site"
+     git branch -M main
+     git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+     git push -u origin main
+     ```
+   - **Or Using GitHub Web UI:**
+     - Click **"uploading an existing file"** on your new repository page.
+     - Drag and drop all files (`index.html`, `style.css`, `script.js`, `.nojekyll`, `.gitignore`, `assets/`, `.github/`).
+     - Commit the changes.
+
+3. **Enable GitHub Pages:**
+   - In your GitHub repository, go to **Settings** → **Pages** (under Code and automation).
+   - Under **Build and deployment** → **Source**, select **GitHub Actions** (or **Deploy from a branch** set to `main` / `/root`).
+   - GitHub Actions will automatically build and publish your site!
+
+4. **Access Your Live Website:**
+   - Your site will be live at: `https://<YOUR_USERNAME>.github.io/<YOUR_REPO_NAME>/`
