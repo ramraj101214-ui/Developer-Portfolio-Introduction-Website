@@ -1,10 +1,13 @@
 /**
  * Deepak | Developer Portfolio JavaScript Logic
+ * Enhanced with Formspree Integration
+ * 
  * - Sticky Navbar Header & Glassmorphic Backdrop
  * - Active Navigation Link Highlighting (IntersectionObserver)
  * - Mobile Navigation Menu Drawer Toggle & Morphing Hamburger
  * - Animated Stats Suffixes & Scroll-Triggered Progress Bars
  * - Real-time Form Validation & Accessible Toast Notifications
+ * - Formspree Integration for Email Submission
  * - Fully Interactive Live Demo Modals for All Featured Projects
  */
 
@@ -211,12 +214,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     7. Contact Form Real-time Validation & Submission
+     6. Contact Form Real-time Validation & Formspree Submission
      ========================================================================== */
   if (contactForm) {
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
 
     // Email regex pattern
     const isValidEmail = (email) => {
@@ -263,24 +267,79 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Form submit handler
-    contactForm.addEventListener('submit', (e) => {
+    // Form submit handler with Formspree integration
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
+      // Validate all fields
       const isNameValid = validateField(nameInput, nameInput.value.trim().length > 0);
       const isEmailValid = validateField(emailInput, isValidEmail(emailInput.value.trim()));
       const isMessageValid = validateField(messageInput, messageInput.value.trim().length >= 10);
 
-      if (isNameValid && isEmailValid && isMessageValid) {
-        // Show success toast notification
+      // If validation fails, stop here
+      if (!isNameValid || !isEmailValid || !isMessageValid) {
+        return;
+      }
+
+      // Disable button and show loading state
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Sending...</span>';
+
+      try {
+        // Prepare form data for Formspree
+        const formData = new FormData(contactForm);
+
+        // Send to Formspree endpoint
+        const response = await fetch('https://formspree.io/f/meaazqjg', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Success: Show success toast
+          formSuccessToast.hidden = false;
+
+          // Reset form
+          contactForm.reset();
+          nameInput.classList.remove('invalid');
+          emailInput.classList.remove('invalid');
+          messageInput.classList.remove('invalid');
+
+          // Reset button
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+
+          // Auto hide success toast after 6 seconds
+          setTimeout(() => {
+            formSuccessToast.hidden = true;
+          }, 6000);
+        } else {
+          // Handle error response from Formspree
+          throw new Error(`Formspree error: ${response.status}`);
+        }
+      } catch (error) {
+        // Network or server error
+        console.error('Form submission error:', error);
+
+        // Show error message in toast (reuse formSuccessToast or create error variant)
+        const errorMsg = 'Failed to send message. Please try again or email directly: ramraj101214@gmail.com';
+        formSuccessToast.textContent = errorMsg;
+        formSuccessToast.style.background = 'rgba(248, 113, 113, 0.1)'; // Red-ish
         formSuccessToast.hidden = false;
 
-        // Reset form inputs
-        contactForm.reset();
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
 
-        // Auto hide success toast after 6 seconds
+        // Auto hide error toast after 6 seconds
         setTimeout(() => {
           formSuccessToast.hidden = true;
+          formSuccessToast.style.background = ''; // Reset background
+          formSuccessToast.textContent = '✅ Thank you! Your message has been sent successfully. I\'ll get back to you soon.';
         }, 6000);
       }
     });
